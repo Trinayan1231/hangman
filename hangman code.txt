@@ -1,0 +1,113 @@
+import random
+print("Welcome to the Hangman Adventure!")
+print()
+print("You find yourself in a mysterious land, far from home. To unlock the secrets and escape this place")
+print()
+print("you must solve the hidden word puzzles. Each correct guess brings you one step closer to freedom, while incorrect guesses might cost you dearly.")
+print()
+print("Beware! The fate of your journey lies in your ability to decipher the hidden words. Are you up for the challenge?")
+print()
+print("Good luck, brave soul, as you embark on this thrilling Hangman Adventure!")
+
+
+
+
+print(''' _                                             
+  | |                                            
+  | |__   __ _ _ __   __ _ _ __ ___   __ _ _ __  
+  | '_ \ / _` | '_ \ / _` | '_ ` _ \ / _` | '_ \ 
+  | | | | (_| | | | | (_| | | | | | | (_| | | | |
+  |_| |_|\__,_|_| |_|\__, |_| |_| |_|\__,_|_| |_|
+                      __/ |                      
+                     |___/  ''')
+print("Are you ready to Play this Game?")
+print()
+stage=['''
+    +---+
+    |   |
+    O   |
+   /|\  |
+   / \  |
+        |
+  =========''', '''
+    +---+
+    |   |
+    O   |
+   /|\  |
+   /    |
+        |
+  =========''', '''
+    +---+
+    |   |
+    O   |
+   /|\  |
+        |
+        |
+  =========''', '''
+    +---+
+    |   |
+    O   |
+   /|   |
+        |
+        |
+  =========''', '''
+    +---+
+    |   |
+    O   |
+    |   |
+        |
+        |
+  =========''', '''
+    +---+
+    |   |
+    O   |
+        |
+        |
+        |
+  =========''', '''
+    +---+
+    |   |
+        |
+        |
+        |
+        |
+  =========''']
+
+words=["apple","cat","dog","tomatoes","runner","umbrella","banana", "cherry", "date", "elderberry", "fig", "grape", "honeydew", "kiwi", "lemon", "mango", "orange", "pear", "quince", "raspberry", "strawberry", "tomato"]
+random_words=random.choice(words)
+length=len(random_words)
+
+enter_name=input("Tell me your name.\n").upper()
+print()
+print("Hello my friend",enter_name)
+print(f"Computer choice a word and it's : {random_words}")
+
+live=6
+
+display=[]
+for _ in range(length):
+  display+="_"
+print(display)
+
+end_of_game= False
+
+while not  end_of_game:
+  guess=input("Guess the letter:  ").lower()
+  for position in range(length):
+    letter=random_words[position]
+    if letter==guess:
+      display[position]=letter
+      print("You choose the correct word")
+  if guess not in random_words:
+    print("You choose the wrong word.You are lossing your life.")
+    live-=1
+    if live==0:
+      enf_of_game=True
+      print("Sorry!You loss the game")
+
+
+
+  if "_" not in display:
+    end_of_game=True
+    print("You win")
+  print(stage[live])
